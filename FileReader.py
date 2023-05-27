@@ -13,6 +13,10 @@ def read_files_in_directory(directory='.', output_file='fileContents.txt', ignor
     with open(output_file, 'w') as f:
         # Walk through the directory
         for root, dirs, files in os.walk(directory):
+
+            # Remove ignored directories from the traversal
+            dirs[:] = [d for d in dirs if d not in ignored_directories]
+
             # For each file
             for file_name in files:
 
