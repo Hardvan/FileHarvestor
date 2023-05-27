@@ -1,7 +1,10 @@
 import os
 
 
-def read_files_in_directory(directory='.', output_file='fileContents.txt', ignored_directories=[]):
+def read_files_in_directory(directory='.', output_file='fileContents.txt', ignored_directories=None):
+
+    if ignored_directories is None:
+        ignored_directories = []
 
     default_ignored = ['.git', '.gitignore', '.vscode',
                        '__pycache__', 'node_modules', '.venv']
