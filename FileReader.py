@@ -2,6 +2,13 @@ import os
 
 
 def read_files_in_directory(directory='.', output_file='fileContents.txt', ignored_directories=None):
+    """Reads all files in a directory and writes the contents to a file.
+
+    Args:
+        - directory (str, optional): The directory to read files from. Defaults to '.'.
+        - output_file (str, optional): The file to write the contents to. Defaults to 'fileContents.txt'.
+        - ignored_directories (list, optional): A list of directories to ignore. Defaults to None.
+    """
 
     if ignored_directories is None:
         ignored_directories = []
