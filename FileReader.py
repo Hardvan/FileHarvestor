@@ -1,7 +1,7 @@
 import os
 
 
-def read_files_in_directory(directory='.', output_file='fileContents.txt', ignored_directories=None):
+def read_files_in_directory(directory='.', output_file='fileContents.txt'):
     """Reads all files in a directory and writes the contents to a file.
 
     Args:
@@ -10,14 +10,10 @@ def read_files_in_directory(directory='.', output_file='fileContents.txt', ignor
         - ignored_directories (list, optional): A list of directories to ignore. Defaults to None.
     """
 
-    if ignored_directories is None:
-        ignored_directories = []
+    ignored_directories = ['.git', '.gitignore', '.vscode',
+                           '__pycache__', 'node_modules', '.venv']
 
-    default_ignored = ['.git', '.gitignore', '.vscode',
-                       '__pycache__', 'node_modules', '.venv']
-
-    # Add the default ignored directories to the ignored directories list
-    ignored_directories.extend(default_ignored)
+    ignored_extensions = []
 
     # Open the output file
     with open(output_file, 'w') as f:
@@ -31,7 +27,7 @@ def read_files_in_directory(directory='.', output_file='fileContents.txt', ignor
             for file_name in files:
 
                 # Skip the output file
-                if file_name == output_file:
+                if file_name == output_file or file_name.split('.')[-1] in ignored_extensions:
                     continue
 
                 # Get the file path
