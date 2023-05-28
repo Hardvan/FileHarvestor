@@ -15,6 +15,8 @@ def read_files_in_directory(directory='.', output_file='fileContents.txt'):
 
     ignored_extensions = []
 
+    ignored_files = [".gitignore", "requirements.txt", "FileReader.py"]
+
     # Open the output file
     with open(output_file, 'w') as f:
         # Walk through the directory
@@ -27,7 +29,7 @@ def read_files_in_directory(directory='.', output_file='fileContents.txt'):
             for file_name in files:
 
                 # Skip the output file
-                if file_name == output_file or file_name.split('.')[-1] in ignored_extensions:
+                if file_name == output_file or file_name.split('.')[-1] in ignored_extensions or file_name in ignored_files:
                     continue
 
                 # Get the file path
