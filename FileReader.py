@@ -14,7 +14,7 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
         return
 
     # Open the output file
-    with open(output_file, 'w') as f:
+    with open(output_file, 'w', encoding='utf-8') as f:
 
         # Loop through the files in the list
         for file_name in file_list:
@@ -25,8 +25,8 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
             # Make sure the file exists
             if os.path.exists(file_path):
 
-                # Open the file
-                with open(file_path, 'r') as f2:
+                # Open the file with the appropriate encoding
+                with open(file_path, 'r', encoding='utf-8') as f2:
 
                     # Write the contents to the output file
                     # Title
@@ -35,6 +35,8 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
                     f.write(f2.read())
                     # New line
                     f.write("\n\n")
+
+                    print(f"✅ '{file_path}' read successfully")
 
             else:
                 print(f"File '{file_path}' does not exist.")
@@ -45,6 +47,13 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
 
 if __name__ == "__main__":
 
-    file_list = ["Hello/hello.txt", "random_name.txt"]
+    app_py = "app.py"
+    students_py = "Students.py"
+    index_html = "templates/index.html"
+    index_css = "static/css/index.css"
+    index_js = "static/js/index.js"
+
+    file_list = [app_py, students_py,
+                 index_html, index_js]
 
     read_files_in_directory(".", file_list)
