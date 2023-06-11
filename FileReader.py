@@ -1,50 +1,50 @@
 import os
 
 
-def read_files_in_directory(directory='.', output_file='fileContents.txt'):
+def read_files_in_directory(directory='.', file_list=None, output_file='fileContents.txt'):
     """Reads all files in a directory and writes the contents to a file.
 
     Args:
         - directory (str, optional): The directory to read files from. Defaults to '.'.
+        - file_list (list, optional): A list of files to read. Defaults to None.
         - output_file (str, optional): The file to write the contents to. Defaults to 'fileContents.txt'.
-        - ignored_directories (list, optional): A list of directories to ignore. Defaults to None.
     """
 
-    ignored_directories = ['.git', '.gitignore', '.vscode',
-                           '__pycache__', 'node_modules', '.venv']
-
-    ignored_extensions = []
-
-    ignored_files = [".gitignore", "requirements.txt", "FileReader.py"]
+    if file_list is None:
+        return
 
     # Open the output file
     with open(output_file, 'w') as f:
-        # Walk through the directory
-        for root, dirs, files in os.walk(directory):
 
-            # Remove ignored directories from the traversal
-            dirs[:] = [d for d in dirs if d not in ignored_directories]
+        # Loop through the files in the list
+        for file_name in file_list:
 
-            # For each file
-            for file_name in files:
+            # Construct the absolute file path
+            file_path = os.path.join(directory, file_name)
 
-                # Skip the output file
-                if file_name == output_file or file_name.split('.')[-1] in ignored_extensions or file_name in ignored_files:
-                    continue
+            # Make sure the file exists
+            if os.path.exists(file_path):
 
-                # Get the file path
-                file_path = os.path.join(root, file_name)
+                # Open the file
+                with open(file_path, 'r') as f2:
 
-                # Write the file path to the output file
-                f.write(f"{file_path}:\n")
+                    # Write the contents to the output file
+                    # Title
+                    f.write(f"{file_name}:\n")
+                    # Contents
+                    f.write(f2.read())
+                    # New line
+                    f.write("\n\n")
 
-                # Open the file and write the contents to the output file
-                with open(file_path, 'r') as file:
-                    file_contents = file.read()
-                    f.write(file_contents)
+            else:
+                print(f"File '{file_path}' does not exist.")
 
-                f.write("\n\n")  # Write a new line to the output file
+        # Close the output file
+        f.close()
 
 
 if __name__ == "__main__":
-    read_files_in_directory()
+
+    file_list = ["Hello/hello.txt", "random_name.txt"]
+
+    read_files_in_directory(".", file_list)
