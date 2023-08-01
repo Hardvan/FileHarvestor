@@ -39,7 +39,7 @@ def read_files_in_directory(directory='.', file_list=None, output_file='fileCont
                     print(f"✅ '{file_path}' read successfully")
 
             else:
-                print(f"File '{file_path}' does not exist.")
+                print(f"❌ File '{file_path}' does not exist.")
 
         # Close the output file
         f.close()
