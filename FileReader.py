@@ -2,65 +2,85 @@ import os
 import time
 
 
-def read_files_in_directory(directory='.', file_list=None, output_file='./output/contents.txt'):
+def read_files_in_directory(file_list=None, output_text_file='./output/contents.txt', output_markdown_file='./output/contents.md'):
 
     if file_list is None:
         print("❌ No files to read. Exiting.")
         return
 
-    start = time.time()  # Start the timer
+    start_time = time.time()  # Start the timer
+
+    directory = '.'
 
     # Create the output directory if it doesn't exist
-    output_directory = os.path.dirname(output_file)
-    if not os.path.exists(output_directory):
-        os.makedirs(output_directory)
+    output_directory = os.path.dirname(output_text_file)
+    os.makedirs(output_directory, exist_ok=True)
 
     not_found_files = []  # List to store files that were not found
-    with open(output_file, 'w', encoding='utf-8') as f:  # Open the output file
+
+    # Open the output files
+    with open(output_text_file, 'w', encoding='utf-8') as text_output_handle, open(output_markdown_file, 'w', encoding='utf-8') as markdown_output_handle:
+
+        # H1 heading for the markdown file
+        markdown_output_handle.write("# Contents\n\n")
 
         for file_name in file_list:  # Iterate through the list of files
 
             file_path = os.path.join(directory, file_name)  # absolute path
 
-            # Make sure the file exists
+            # Check if the file exists
             if os.path.exists(file_path):
 
                 # Open the file with the appropriate encoding
-                with open(file_path, 'r', encoding='utf-8') as f2:
-                    # Write the contents to the output file
-                    f.write(f"{file_name}:\n")  # Title
-                    f.write(f2.read())  # Contents
-                    f.write("\n\n")  # New line
+                with open(file_path, 'r', encoding='utf-8') as input_file_handle:
+
+                    contents = input_file_handle.read()
+
+                    # Write the contents to the output text file
+                    text_output_handle.write(f"{file_name}:\n")  # Title
+                    text_output_handle.write(contents)  # Contents
+                    text_output_handle.write("\n\n")  # New line
+
+                    # Write the contents to the output markdown file
+                    markdown_output_handle.write(
+                        f"## {file_name}\n\n")  # H2 heading
+                    markdown_output_handle.write(contents)
+                    markdown_output_handle.write("\n\n")
+
                     print(f"✅ '{file_path}' read successfully")
 
             else:
                 print(f"❌ File '{file_path}' does not exist.")
                 not_found_files.append(file_path)
 
-    if len(not_found_files) > 0:
+    if not_found_files:
         print(
             f"❌ The following files were not found ({len(not_found_files)} of {len(file_list)}):")
         for file in not_found_files:
             print(f"  - {file}")
     else:
-        print("✅ All files read successfully")
+        print("\n✅ All files read successfully")
 
-    end = time.time()  # End the timer
-    elapsed_time = round(end - start, 2)  # Calculate the elapsed time
+    end_time = time.time()  # End the timer
+    elapsed_time = round(end_time - start_time, 2)
 
     print(
-        f"✅ Output written to '{output_file}' \033[90m({elapsed_time}s)\033[0m")
+        f"\n✅ Output written to '{output_text_file}' and '{output_markdown_file}' \033[90m({elapsed_time}s)\033[0m")
 
 
 if __name__ == "__main__":
 
-    app_py = "app.py"
-    students_py = "Students.py"
-    index_html = "templates/index.html"
-    index_css = "static/css/index.css"
-    index_js = "static/js/index.js"
+    file_list = ["SampleDirectory/FolderA/File1.txt",
+                 "SampleDirectory/FolderB/File1.txt",
+                 "SampleDirectory/FolderC/File1.txt",
+                 "SampleDirectory/FolderA/File2.txt",
+                 "SampleDirectory/FolderB/File2.txt",
+                 "SampleDirectory/FolderC/File2.txt",
+                 "SampleDirectory/FolderA/File3.txt",
+                 "SampleDirectory/FolderB/File3.txt",
+                 "SampleDirectory/FolderC/File3.txt",
+                 ]
 
-    read_files_in_directory(directory=".",
-                            file_list=[app_py, students_py,
-                                       index_html, index_js],
-                            output_file="./output/contents.txt")
+    read_files_in_directory(file_list=file_list,
+                            output_text_file='./output/contents.txt',
+                            output_markdown_file='./output/contents.md')
