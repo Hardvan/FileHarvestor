@@ -33,6 +33,8 @@ def read_files_in_directory(file_list=None, output_text_file='./output/contents.
 
         for file_name in file_list:  # Iterate through the list of files
 
+            t1 = time.time()  # Start the timer for each file
+
             file_path = os.path.join(directory, file_name)  # absolute path
 
             # Check if the file exists
@@ -54,7 +56,11 @@ def read_files_in_directory(file_list=None, output_text_file='./output/contents.
                     markdown_output_handle.write(contents)
                     markdown_output_handle.write("\n\n")
 
-                    print(f"✅ '{file_path}' read successfully")
+                    t2 = time.time()  # End the timer for each file
+                    elapsed_time = round(t2 - t1, 2)
+
+                    print(
+                        f"✅ '{file_path}' read successfully \033[90m({elapsed_time}s)\033[0m")
 
             else:
                 print(f"❌ File '{file_path}' does not exist.")
