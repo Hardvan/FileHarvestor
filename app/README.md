@@ -2,10 +2,6 @@
 
 This script is a Python utility that reads the contents of specified files and writes them to both text and markdown files. If a file does not exist, it is added to a list of not found files. This tool is useful for consolidating and documenting the contents of multiple files in a directory.
 
-## FileHarvestor on PyPI
-
-View the package on PyPI: [FileHarvestor](https://pypi.org/project/FileHarvestor/)
-
 ## Features
 
 - Reads the contents of specified files.
@@ -53,14 +49,3 @@ Function arguments:
    ```
 
    View the `run.py` file for an example of how to use the `FileHarvestor` package.
-
-## Run the following commands to update the package (for maintainers)
-
-1. Change version in `setup.py`
-2. Run the following commands
-
-   ```bash
-   python setup.py bdist_wheel sdist
-   twine check dist/*
-   twine upload dist/*
-   ```
