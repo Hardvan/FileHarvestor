@@ -5,7 +5,7 @@ with open("app/README.md", "r") as f:
 
 setup(
     name="FileHarvestor",
-    version="1.0.1",
+    version="1.0.2",
     author="Hardik Pawar",
     author_email="hardikpawarh@gmail.com",
     description="FileHarvestor is a Python utility that reads the contents of specified files and writes them to both text and markdown files. If a file does not exist, it is added to a list of not found files. This tool is useful for consolidating and documenting the contents of multiple files in a directory.",

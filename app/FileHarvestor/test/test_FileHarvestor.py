@@ -28,8 +28,6 @@ class TestFileHarvestor(unittest.TestCase):
         self.assertTrue(os.path.exists('./output/contents.txt'))
         self.assertTrue(os.path.exists('./output/contents.md'))
 
-        os.remove('./SampleDirectory')
 
-        os.remove('./output/contents.txt')
-        os.remove('./output/contents.md')
-        os.rmdir('./output')
+if __name__ == '__main__':
+    unittest.main()

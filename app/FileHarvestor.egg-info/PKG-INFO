@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: FileHarvestor
-Version: 1.0.1
+Version: 1.0.2
 Summary: FileHarvestor is a Python utility that reads the contents of specified files and writes them to both text and markdown files. If a file does not exist, it is added to a list of not found files. This tool is useful for consolidating and documenting the contents of multiple files in a directory.
 Home-page: https://github.com/Hardvan/FileHarvestor
 Author: Hardik Pawar
