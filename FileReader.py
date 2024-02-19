@@ -3,6 +3,13 @@ import time
 
 
 def read_files_in_directory(file_list=None, output_text_file='./output/contents.txt', output_markdown_file='./output/contents.md'):
+    """Reads the contents of the files in the list and writes them to the output text and markdown files. If the file does not exist, it is added to the list of not found files.
+
+    Args:
+        file_list (list, optional): List of files to read. Defaults to None.
+        output_text_file (str, optional): Output text file. Defaults to './output/contents.txt'.
+        output_markdown_file (str, optional): Output markdown file. Defaults to './output/contents.md'.
+    """
 
     if file_list is None:
         print("❌ No files to read. Exiting.")
