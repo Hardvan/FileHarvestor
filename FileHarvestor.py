@@ -2,7 +2,7 @@ import os
 import time
 
 
-def read_files_in_directory(file_list=None, output_text_file='./output/contents.txt', output_markdown_file='./output/contents.md'):
+def read_files(file_list=None, output_text_file='./output/contents.txt', output_markdown_file='./output/contents.md'):
     """Reads the contents of the files in the list and writes them to the output text and markdown files. If the file does not exist, it is added to the list of not found files.
 
     Args:
@@ -94,6 +94,6 @@ if __name__ == "__main__":
                  "SampleDirectory/FolderC/File3.txt",
                  ]
 
-    read_files_in_directory(file_list=file_list,
-                            output_text_file='./output/contents.txt',
-                            output_markdown_file='./output/contents.md')
+    read_files(file_list=file_list,
+               output_text_file='./output/contents.txt',
+               output_markdown_file='./output/contents.md')
