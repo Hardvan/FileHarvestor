@@ -6,6 +6,10 @@ This script is a Python utility that reads the contents of specified files and w
 
 View the package on PyPI: [FileHarvestor](https://pypi.org/project/FileHarvestor/)
 
+## Demonstration Video
+
+[![FileHarvestor Demonstration](./demo/thumbnail2.png)](https://youtu.be/9wgHg_YINWo?si=q4RWUkmS1w9ic5Vl)
+
 ## Features
 
 - Reads the contents of specified files.
